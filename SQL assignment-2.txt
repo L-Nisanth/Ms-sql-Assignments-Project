@@ -1,0 +1,59 @@
+************************************ASSIGNMENT-2 ***********************************
+Problem Statement:
+You have successfully cleared the first semester. In your second semester youwill learn how to create tables, work with WHERE clause and basicoperators. Tasks To Be Performed:
+1. Create a customer table which comprises of these columns: ‘customer_id’,
+‘first_name’, ‘last_name’, ‘email’, ‘address’, ‘city’,’state’,’zip’ 
+2. Insert 5 new records into the table
+3. Select only the ‘first_name’ and ‘last_name’ columns fromthe customer
+table
+4. Select those records where ‘first_name’ starts with “G” and city is ‘SanJose’. 
+5. Select those records where Email has only ‘gmail’. 
+6. Select those records where the ‘last_name’ doesn't end with “A”.
+
+*************************************************************************************
+
+1) CREATE TABLE customer (
+          customer_id INT NOT NULL,
+	  first_name  VARCHAR(20)  NOT NULL,
+	  last_name   VARCHAR(20)  NOT NULL,
+	  email       VARCHAR(30)  UNIQUE NOT NULL,
+	  address_    VARCHAR(300) NOT NULL,
+	  city        VARCHAR(20)  NOT NULL,
+	  state_      VARCHAR(20)  NOT NULL,
+	  zip         INT          NOT NULL          );
+
+
+2) INSERT INTO Customer (customer_id, first_name, last_name, email, address_, city, state_, zip)
+VALUES
+    (1, 'Sophie', 'Miller', 'sophie.m@example.com', '555 Cedar Ln', 'Mountain City', 'CO', 34567),
+    (2, 'David', 'Clark', 'david.c@example.com', '777 Birch Rd', 'Laketown', 'WA', 87654),
+    (3, 'Olivia', 'Garcia', 'olivia.g@example.com', '888 Willow St', 'Riverdale', 'GA', 23456),
+    (4, 'Samuel', 'Rodriguez', 'samuel.r@example.com', '999 Spruce Dr', 'Harbortown', 'NC', 78901),
+    (5, 'Lily', 'Turner', 'lily.t@example.com', '111 Pine Ave', 'Hillside', 'IL', 12345);
+
+3) SELECT first_name, last_name 
+   FROM customer;
+
+4)  SELECT *
+    FROM Customer
+    WHERE first_name LIKE 'G%' AND city = 'SanJose';
+
+5)  SELECT *
+    FROM Customer
+    WHERE email LIKE '%@gmail.com';
+
+6) SELECT *
+   FROM customer
+   WHERE NOT (last_name LIKE '%a');
+
+
+
+
+
+
+
+
+
+
+
+

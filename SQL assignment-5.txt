@@ -1,0 +1,74 @@
+************************************ASSIGNMENT-5 ***********************************
+Problem Statement:
+You have successfully cleared your fourth semester. In the fifth semester youwill
+work with clauses and SET operators. Tasks To Be Performed:
+1. Arrange the ‘Orders’ dataset in decreasing order of amount
+2. Create a table with the name ‘Employee_details1’ consistingof thesecolumns: ‘Emp_id’, ‘Emp_name’, ‘Emp_salary’. Create another tablewiththe name ‘Employee_details2’ consisting of the same columns asthefirst
+table. 
+3. Apply the UNION operator on these two tables
+4. Apply the INTERSECT operator on these two tables
+5. Apply the EXCEPT operator on these two tables
+************************************************************************************
+
+1) SELECT * FROM orders
+   ORDER BY amount DESC;
+
+2) CREATE TABLE Employee_details1 (
+    Emp_id INT,
+    Emp_name VARCHAR(20),
+    Emp_salary DECIMAL(10, 2),
+    PRIMARY KEY (EMP_id)
+    );
+
+    CREATE TABLE Employee_details2 (
+    Emp_id INT ,
+    Emp_name VARCHAR(20),
+    Emp_salary DECIMAL(10, 2),
+    PRIMARY KEY (EMP_id)
+    );
+
+3)Union opertor combines results by eliminating duplicate rows
+   SELECT Emp_id,Emp_name,Emp_salary
+   FROM Employee_details1
+   UNION
+   SELECT Emp_id,Emp_name,Emp_salary
+   FROM Employee_details2;
+
+4)Intersect operator only returns results of rows common to both tables . or you can say it shows only duplicate rows
+
+   SELECT Emp_id,Emp_name,Emp_salary
+   FROM Employee_details1
+   INTERSECT
+   SELECT Emp_id,Emp_name,Emp_salary
+   FROM Employee_details2;
+
+5)Except opertator displays results that are unique to first select table and are not available in second select table 
+    
+   SELECT Emp_id,Emp_name,Emp_salary
+   FROM Employee_details1
+   EXCEPT
+   SELECT Emp_id,Emp_name,Emp_salary
+   FROM Employee_details2;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

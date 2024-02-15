@@ -1,0 +1,64 @@
+************************************ASSIGNMENT-3 ***********************************
+Problem Statement:
+You have successfully cleared the second semester. In your third semester youwill work with joins and update statements. Tasks To Be Performed:
+1. Create an ‘Orders’ table which comprises of these columns: ‘order_id’,
+‘order_date’, ‘amount’, ‘customer_id’. 
+2. Insert 5 new records. 
+3. Make an inner join on ‘Customer’ and ‘Orders’ tables on the ‘customer_id’ column. 
+4. Make left and right joins on ‘Customer’ and ‘Orders’ tables on the‘customer_id’ column. 
+5. Make a full outer join on ‘Customer’ and ‘Orders’ table on the ‘customer_id’ column. 
+6. Update the ‘Orders’ table and set the amount to be 100where‘customer_id’ is 3.
+******************************************************************
+
+1) CREATE TABLE orders (
+           order_id     INT NOT NULL,
+           order_date   DATE NOT NULL, 
+	   amount       DECIMAL(10,2) NOT NULL, 
+	   customer_id  INT NOT NULL,
+	   PRIMARY KEY (order_id),
+	   FOREIGN KEY (customer_id) REFERENCES customer(customer_id)
+	    );
+
+2)  INSERT INTO Orders (order_id, order_date, amount, customer_id)
+    VALUES
+    (1, '2023-01-01', 100.00, 1),
+    (2, '2023-02-15', 150.50, 2),
+    (3, '2023-03-20', 200.75, 3),
+    (4, '2023-04-10', 120.25, 4),
+    (5, '2023-05-05', 180.90, 5);
+
+3) SELECT *
+   FROM customer  INNER JOIN orders  
+   ON customer.customer_id = orders.customer_id;
+
+4) =>Left join
+         SELECT *
+         FROM customer  LEFT JOIN orders  
+         ON customer.customer_id = orders.customer_id;
+
+   =>Right join
+         SELECT *
+         FROM customer  RIGHT JOIN orders  
+         ON customer.customer_id = orders.customer_id;
+
+
+5)       SELECT *
+         FROM customer  FULL OUTER JOIN orders  
+         ON customer.customer_id = orders.customer_id;
+
+6)  UPDATE orders
+    SET amount=100
+    WHERE customer_id=3;
+
+
+
+
+
+
+
+
+
+
+
+
+

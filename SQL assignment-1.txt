@@ -1,0 +1,41 @@
+************************************ASSIGNMENT-1 ***********************************
+Problem Statement:
+Consider yourself to be Sam who is a student at a prestigious university. Youhave enrolled for the SQL course and it is your first semester. Tasks To Be Performed:
+1. Install MS SQL Server
+2. Give the difference between Char and Varchar data type. 
+3. Explain the types of SQL Commands. 
+4. Explain NVarchar and Nchar.
+
+*************************************************************************************
+
+1)MS sql server installed with sql server management studio
+
+2) =>char and varchar are both character data types  
+   =>char is fixed length and reserves the specified max character length irrespective of the original length of the characters
+   =>varchar only reserves memory based on the input character length rather than the reserved max length  
+   
+
+3)  There are different types of sql commands based on their functionalities ,few examples are
+   =>Data Definition Language :
+           *CREATE
+           *ALTER
+           *DROP
+  
+   =>Data Manipulation Language:
+           *INSERT
+           *UPDATE
+           *DELETE        
+     
+   =>Data Query Language :
+           *SELECT 
+ 
+4) => NVARCHAR and NCHAR are data types used for storing Unicode character data
+   =>Each character is represented using 2 bytes.
+   =>NCHAR is used to store fixed-length Unicode character string
+   =>NVARCHAR is designed to store variable-length Unicode character strings
+
+
+     
+   
+        
+

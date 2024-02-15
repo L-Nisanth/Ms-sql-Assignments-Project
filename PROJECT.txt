@@ -1,0 +1,81 @@
+ ************** QUERYING A LARGE RELATIONAL DATABASE  ***************
+
+AdventureWorks2012 database successfully downloaded and restored
+
+
+TASK a)Get all the details from the person table including email ID, phone
+       number and phone number type:-
+
+     SELECT  EmailAddress,PhoneNumber , Name as 'NumberType' FROM
+     Person.EmailAddress AS pE JOIN Person.PersonPhone AS pN
+     ON pE.BusinessEntityID = pN.BusinessEntityID JOIN Person.PhoneNumberType as pNT
+     ON pN.PhoneNumberTypeID=pNT.PhoneNumberTypeID;
+ 
+--------------------------------------------------
+
+TASK b)Get the details of the sales header order made in May 2011 :-
+    
+     SELECT * FROM Sales.SalesOrderHeader
+     WHERE YEAR(OrderDate)=2011 AND MONTH(OrderDate)=5;
+
+--------------------------------------------------
+
+TASK c)Get the details of the sales details order made in the month of May 2011:-
+   
+      SELECT Sales.SalesOrderHeader.OrderDate,
+      Sales.SalesOrderDetail.*
+      FROM Sales.SalesOrderHeader
+      JOIN Sales.SalesOrderDetail
+      ON Sales.SalesOrderHeader.SalesOrderID = Sales.SalesOrderDetail.SalesOrderID
+      WHERE YEAR(Sales.SalesOrderHeader.OrderDate)=2011 AND MONTH(Sales.SalesOrderHeader.OrderDate)=5;
+
+--------------------------------------------------
+
+TASK d)Get the total sales made in May 2011:-
+     
+     SELECT sum(LineTotal) as 'Total sales made in month of may'
+     FROM Sales.SalesOrderHeader
+     JOIN Sales.SalesOrderDetail
+     ON Sales.SalesOrderHeader.SalesOrderID = Sales.SalesOrderDetail.SalesOrderID
+     WHERE YEAR(Sales.SalesOrderHeader.OrderDate)=2011 AND MONTH(Sales.SalesOrderHeader.OrderDate)=5;
+
+----------------------------------------------------
+
+TASK e)Get the total sales made in the year 2011 by month order by increasing sales:-
+
+
+   SELECT DATENAME(MONTH,Sales.SalesOrderHeader.OrderDate) as 'MONTH' ,sum(LineTotal) as 'TOTAL SALES'
+   FROM Sales.SalesOrderHeader
+   JOIN Sales.SalesOrderDetail
+   ON Sales.SalesOrderHeader.SalesOrderID = Sales.SalesOrderDetail.SalesOrderID
+   Where YEAR(Sales.SalesOrderHeader.OrderDate)=2011
+   GROUP BY DATENAME(MONTH,Sales.SalesOrderHeader.OrderDate)
+   ORDER BY 'TOTAL SALES';
+
+---------------------------------------------------------
+
+TASK f)Get the total sales made to the customer with FirstName='Gustavo'
+        and LastName ='Achong' :-
+
+    SELECT sales.Customer.PersonID,firstname,lastname,SUM(linetotal) AS 'total sales' 
+    FROM person.person JOIN  sales.Customer
+    ON person.person.BusinessEntityID = sales.Customer.PersonID
+    JOIN sales.SalesOrderHeader  
+    ON sales.Customer.CustomerID=sales.SalesOrderHeader.CustomerID
+    JOIN sales.SalesOrderDetail
+    ON sales.SalesOrderDetail.SalesOrderID =sales.SalesOrderHeader.SalesOrderID
+    WHERE person.person.FirstName='gustavo' and person.person.LastName='achong'
+    GROUP BY FirstName,LastName,sales.Customer.PersonID;
+
+
+------------------------------------------------------------   
+
+
+
+    
+
+
+
+
+    
+

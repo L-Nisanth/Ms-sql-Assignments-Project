@@ -1,0 +1,70 @@
+************************************ASSIGNMENT-6 ***********************************
+Problem Statement:
+You have successfully cleared your fifth semester. In the final semester youwill
+work with views, transactions and exception handling. Tasks To Be Performed:
+1. Create a view named ‘customer_san_jose’ which comprises of onlythosecustomers who are from San Jose
+2. Inside a transaction, update the first name of the customer to Francis where the last name is Jordan:
+  a. Rollback the transaction
+  b. Set the first name of customer to Alex, where the last nameisJordan
+3. Inside a TRY... CATCH block, divide 100 with 0, print the default error
+message. 
+4. Create a transaction to insert a new record to Orders table and saveit
+
+***********************************************************************************
+
+1) CREATE VIEW customer_san_jose AS
+   SELECT * 
+   FROM customer
+   WHERE city='SAn Jose';
+
+
+2) a) BEGIN TRANSACTION;
+
+      UPDATE Customers
+      SET First_Name = 'Francis'
+      WHERE Last_Name = 'Jordan';
+
+      ROLLBACK;
+
+   b) BEGIN TRANSACTION;
+      
+      UPDATE Customers
+      SET First_Name = 'Alex'
+      WHERE Last_Name = 'Jordan';
+
+      COMMIT;
+
+
+3)  BEGIN TRY
+    DECLARE @result FLOAT;
+    SET @result = 100 / 0;
+    COMMIT;
+    END TRY
+    
+    BEGIN CATCH
+    DECLARE @Errormsg NVARCHAR(4000);
+    DECLARE @ErrorSeverity INT;
+    DECLARE @ErrorState INT;
+
+    SELECT 
+        @ErrorMessage = ERROR_MESSAGE(),
+        @ErrorSeverity = ERROR_SEVERITY(),
+        @ErrorState = ERROR_STATE();
+
+    PRINT 'oops error occured: ' + @ErrorMessage;
+     PRINT  @ErrorSeverity;
+	PRINT  @ErrorState;
+  
+    IF @@TRANCOUNT > 0
+        ROLLBACK;
+
+    END CATCH;
+
+4) BEGIN TRANSACTION ;
+
+   INSERT INTO orders (order_id,order_date, amount,customer_id)
+   VALUES (6,'2023-06-17',190.00,2);
+
+   COMMIT;
+
+
